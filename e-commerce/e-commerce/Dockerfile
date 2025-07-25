@@ -3,10 +3,8 @@ FROM maven:3.9.5-eclipse-temurin-21-alpine AS builder
 
 WORKDIR /app
 
-COPY .. .
-
-# Mude para a pasta correta
-WORKDIR /app/e-commerce
+# Copia todos os arquivos do projeto (pom.xml, src/, etc.)
+COPY . .
 
 RUN mvn clean package -DskipTests
 
@@ -15,8 +13,8 @@ FROM eclipse-temurin:17-jre-alpine
 
 WORKDIR /app
 
-# Copia o .jar gerado na pasta /target dentro do módulo e-commerce
-COPY --from=builder /app/e-commerce/target/*.jar app.jar
+# Copia o .jar gerado na pasta /target da etapa de build
+COPY --from=builder /app/target/*.jar app.jar
 
 EXPOSE 8080
 
