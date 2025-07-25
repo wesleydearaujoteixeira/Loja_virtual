@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://dpg-d21g0tvfte5s73ficue0-a.oregon-postgres.render.com:5432/loja_virtual_qcqp
+    username: loja_virtual_qcqp_user
+    password: 9WlB28tXD3edSlcNV515JUJMQd3vw2Xg
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+mercado_pago_sample_access_token: APP_USR-3233389305480692-071210-80df6976d0781525aea7b4a41af33037-2535936225
