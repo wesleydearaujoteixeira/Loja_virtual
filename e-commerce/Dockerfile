@@ -6,7 +6,7 @@ WORKDIR /app
 COPY . .
 
 # Garantir permissão de execução para o mvnw
-RUN chmod +x ./mvnw
+RUN mvn clean install
 
 # Build com Maven
 RUN ./mvnw package -DskipTests
