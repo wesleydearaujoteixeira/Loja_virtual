@@ -1,26 +1,22 @@
-FROM eclipse-temurin:21-jdk-alpine AS builder
+# Etapa 1: Build com Maven
+FROM maven:3.9.5-eclipse-temurin-21-alpine AS builder
 
 WORKDIR /app
 
-# Copia todos os arquivos, incluindo mvnw e pom.xml
+# Copia todos os arquivos
 COPY . .
 
-# Garantir permissão de execução para o mvnw
-RUN mvn clean install
-
 # Build com Maven
-RUN ./mvnw package -DskipTests
+RUN mvn clean package -DskipTests
 
-# Etapa 2: imagem mais leve pra rodar a aplicação
+# Etapa 2: imagem mais leve para rodar a aplicação
 FROM eclipse-temurin:17-jre-alpine
 
 WORKDIR /app
 
-# Copia o jar do build anterior
+# Copia o .jar da primeira etapa
 COPY --from=builder /app/target/*.jar app.jar
 
-# Porta usada pelo Render (pegando da env PORT)
 EXPOSE 8080
 
-# Rodar a aplicação
 CMD ["java", "-jar", "app.jar"]
