@@ -171,33 +171,31 @@ public class AuthControler {
         return ResponseEntity.ok(clienteDto);
     }
 
-//    @PatchMapping("/atualizar/cliente")
-//    public ResponseEntity<?> updateCliente(
-//            @RequestParam Long usuarioId,
-//            @RequestParam(required = false) String nome,
-//            @RequestParam(required = false) String endereco,
-//            @RequestParam(required = false) String cpf,
-//            @RequestParam(required = false) MultipartFile imagem
-//    ) throws IOException {
-//
-//        Optional<Cliente> clienteOpt = clienteServices.atualizarCliente(usuarioId, nome, endereco, cpf, imagem);
-//
-//        if (clienteOpt.isPresent()) {
-//            Cliente cliente = clienteOpt.get();
-//
-//
-//            ClienteDTO dto = new ClienteDTO(
-//                    cliente.getId(),
-//                    cliente.getNome(),
-//                    cliente.getCpf(),
-//                    cliente.getEndereco(),
-//                    cliente.getFotoUrl()
-//            );
-//            return ResponseEntity.ok(dto);
-//        }
-//
-//        return ResponseEntity.badRequest().body("Cliente não encontrado ou não autorizado.");
-//    }
+    @PatchMapping("/atualizar/cliente")
+    public ResponseEntity<?> updateCliente(
+            @RequestParam Long usuarioId,
+            @RequestParam(required = false) String nome,
+            @RequestParam(required = false) String endereco,
+            @RequestParam(required = false) String cpf,
+            @RequestParam(required = false) MultipartFile imagem
+    ) throws IOException {
+
+        Optional<Cliente> clienteOpt = clienteServices.atualizarCliente(usuarioId, nome, endereco, cpf, imagem);
+
+        if (clienteOpt.isPresent()) {
+            Cliente cliente = clienteOpt.get();
+            ClienteDTO dto = new ClienteDTO(
+                   cliente.getId(),
+                   cliente.getNome(),
+                   cliente.getCpf(),
+                   cliente.getEndereco(),
+                    cliente.getFotoUrl()
+           );
+            return ResponseEntity.ok(dto);
+       }
+
+        return ResponseEntity.badRequest().body("Cliente não encontrado ou não autorizado.");
+    }
 
 
     @GetMapping("/encontrar/cliente/{id}")
