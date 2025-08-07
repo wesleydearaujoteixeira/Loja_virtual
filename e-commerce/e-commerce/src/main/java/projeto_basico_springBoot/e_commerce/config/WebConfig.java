@@ -15,7 +15,7 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://loja-virtual-front-end-sandy.vercel.app/")
+                        .allowedOrigins("https://loja-virtual-front-end-theta.vercel.app/")
                         .allowedMethods("*");
             }
         };
