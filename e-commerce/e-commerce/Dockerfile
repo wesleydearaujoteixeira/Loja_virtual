@@ -4,7 +4,7 @@ FROM maven:3.9.3-eclipse-temurin-17 AS builder
 WORKDIR /app
 
 # Copia todo o projeto de uma vez (incluindo mvnw e pom.xml)
-COPY e-commerce .
+COPY . .
 
 # Garante permissão do mvnw (caso seja necessário)
 RUN chmod +x ./mvnw
