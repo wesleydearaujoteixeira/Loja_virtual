@@ -7,10 +7,10 @@ WORKDIR /app
 COPY e-commerce .
 
 # Garante permissão do mvnw (caso seja necessário)
-RUN chmod +x mvnw
+RUN chmod +x ./mvnw
 
-# Build do jar (sem testes)
-RUN ./mvnw clean package -DskipTests
+# Build com Maven
+RUN ./mvnw package -DskipTests
 
 # Etapa 2: imagem leve para rodar o .jar
 FROM eclipse-temurin:17-jre
