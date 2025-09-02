@@ -1,3 +1,6 @@
+server:
+  port: ${SERVER_PORT:8080}
+
 spring:
   datasource:
     url: jdbc:postgresql://ep-empty-dust-ad3ylf2u-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
